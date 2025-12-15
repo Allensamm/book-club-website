@@ -2,8 +2,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Heart, Target, Users } from "lucide-react"
 
 export const metadata = {
-  title: "About Us - WonderBookClub",
-  description: "Learn about our mission, values, and the thoughtful community behind WonderBookClub.",
+  title: "About Us - ReadLoungeClub",
+  description: "Learn about our mission, values, and the thoughtful community behind ReadLoungeClub.",
 }
 
 export default function AboutPage() {
@@ -17,7 +17,7 @@ export default function AboutPage() {
         </div>
         <div className="container relative z-10 mx-auto px-4">
           <h1 className="mb-6 text-center font-serif text-4xl font-bold text-balance md:text-5xl">
-            About WonderBookClub
+            About ReadLoungeClub
           </h1>
           <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-primary-foreground/90">
             We're cultivating a community of curious readers who believe every book holds a world of wonder waiting to
@@ -33,7 +33,7 @@ export default function AboutPage() {
             <div>
               <h2 className="mb-6 font-serif text-3xl font-bold">Our Mission</h2>
               <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                At WonderBookClub, we believe reading is an act of curiosity—a doorway to understanding lives, cultures,
+                At ReadLoungeClub, we believe reading is an act of curiosity—a doorway to understanding lives, cultures,
                 and ideas beyond our own experience.
               </p>
               <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
@@ -48,7 +48,7 @@ export default function AboutPage() {
             <div className="relative h-[400px] rounded-lg">
               <img
                 src="/thoughtful-readers-discussing-books-in-cozy-space.jpg"
-                alt="WonderBookClub members in discussion"
+                alt="ReadLoungeClub members in discussion"
                 className="h-full w-full rounded-lg object-cover shadow-lg"
               />
             </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
               <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                WonderBookClub began in 2019 when a small group of friends realized they were having their most
+                ReadLoungeClub began in 2019 when a small group of friends realized they were having their most
                 meaningful conversations over books. What started as casual coffee shop meetings has grown into a
                 community of over 12,000 curious readers across the globe.
               </p>

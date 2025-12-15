@@ -19,7 +19,7 @@ export default function MembershipPage() {
       toggleMembership()
       setSelectedPlan(planName)
       alert(
-        `🎉 Welcome to WonderBookClub!\n\nYou've successfully joined as a ${planName} member at ${price}/month.\n\nYou now have access to all member benefits including audiobooks, PDFs, and book ordering!`,
+        `🎉 Welcome to ReadLoungeClub!\n\nYou've successfully joined as a ${planName} member at ${price}/month.\n\nYou now have access to all member benefits including audiobooks, PDFs, and book ordering!`,
       )
       setTimeout(() => {
         router.push("/")
@@ -99,7 +99,7 @@ export default function MembershipPage() {
         </div>
         <div className="container relative z-10 mx-auto px-4">
           <h1 className="mb-6 text-center font-serif text-4xl font-bold text-balance md:text-5xl">
-            Join WonderBookClub
+            Join ReadLoungeClub
           </h1>
           <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-primary-foreground/90">
             Choose the membership that fits your reading life and start discovering wonderful stories with our

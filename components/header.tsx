@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Menu, X, BookOpen } from "lucide-react"
+import { Menu, X } from "lucide-react"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -22,9 +22,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 font-serif text-xl font-bold">
-          <BookOpen className="h-6 w-6" />
-          <span>WonderBookClub</span>
+        <Link href="/" className="flex items-center">
+          <img src="/readloungeclub-logo.png" alt="ReadLoungeClub" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}

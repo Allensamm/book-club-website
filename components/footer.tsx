@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Twitter, Instagram, Mail, BookOpen } from "lucide-react"
+import { Facebook, Twitter, Instagram, Mail } from "lucide-react"
 
 export function Footer() {
   const footerLinks = {
@@ -33,9 +33,8 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="mb-4 flex items-center gap-2 font-serif text-xl font-bold">
-              <BookOpen className="h-6 w-6" />
-              <span>WonderBookClub</span>
+            <Link href="/" className="mb-4 flex items-center">
+              <img src="/readloungeclub-logo.png" alt="ReadLoungeClub" className="h-10 w-auto" />
             </Link>
             <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
               A thoughtful community where curious minds explore diverse stories and discover new perspectives through
@@ -76,7 +75,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} WonderBookClub. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ReadLoungeClub. All rights reserved.</p>
         </div>
       </div>
     </footer>

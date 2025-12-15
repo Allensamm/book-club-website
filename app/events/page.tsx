@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Calendar, MapPin, Users, Video } from "lucide-react"
 
 export const metadata = {
-  title: "Events - WonderBookClub",
+  title: "Events - ReadLoungeClub",
   description: "Join our upcoming book discussions, author conversations, and literary gatherings.",
 }
 
@@ -170,7 +170,7 @@ export default function EventsPage() {
           <div className="rounded-2xl bg-primary p-8 text-center text-primary-foreground md:p-12">
             <h2 className="mb-4 font-serif text-3xl font-bold text-balance">Never Miss an Event</h2>
             <p className="mb-8 text-lg leading-relaxed text-primary-foreground/90">
-              Members receive priority registration and exclusive access to all WonderBookClub events.
+              Members receive priority registration and exclusive access to all ReadLoungeClub events.
             </p>
             <Button size="lg" className="bg-accent hover:bg-accent/90">
               Become a Member

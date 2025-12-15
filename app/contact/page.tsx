@@ -42,7 +42,7 @@ export default function ContactPage() {
         <div className="container relative z-10 mx-auto px-4">
           <h1 className="mb-6 text-center font-serif text-4xl font-bold md:text-5xl">Get in Touch</h1>
           <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-primary-foreground/90">
-            Questions about WonderBookClub? We'd love to hear from you. Send us a message and we'll respond promptly.
+            Questions about ReadLoungeClub? We'd love to hear from you. Send us a message and we'll respond promptly.
           </p>
         </div>
       </section>
@@ -139,7 +139,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="mb-1 font-semibold">Email</h3>
-                      <p className="text-muted-foreground">hello@wonderbookclub.com</p>
+                      <p className="text-muted-foreground">hello@readloungeclub.com</p>
                     </div>
                   </CardContent>
                 </Card>

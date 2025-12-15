@@ -47,7 +47,7 @@ export default function HomePage() {
     {
       name: "Aisha Patel",
       location: "Chicago, IL",
-      quote: "WonderBookClub helped me rediscover my love for reading.",
+      quote: "ReadLoungeClub helped me rediscover my love for reading.",
       image: "/woman-glasses-smiling-portrait.jpg",
     },
     {
@@ -77,7 +77,7 @@ export default function HomePage() {
     {
       name: "Robert Kim",
       location: "Denver, CO",
-      quote: "WonderBookClub expanded my reading horizons beyond what I imagined.",
+      quote: "ReadLoungeClub expanded my reading horizons beyond what I imagined.",
       image: "/smiling-asian-man.png",
     },
     {
@@ -102,7 +102,7 @@ export default function HomePage() {
         <div className="absolute inset-0">
           <img
             src="/diverse-readers-enjoying-books-in-warm-cozy-librar.jpg"
-            alt="WonderBookClub members enjoying literature together"
+            alt="ReadLoungeClub members enjoying literature together"
             className="h-full w-full object-cover"
           />
           {/* Dark overlay for text readability */}
@@ -141,7 +141,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <h2 className="mb-4 font-serif text-3xl font-bold text-balance md:text-4xl">
-              Why readers love WonderBookClub
+              Why readers love ReadLoungeClub
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
               A place where every book becomes a conversation and every member brings something wonderful to discover.
@@ -293,7 +293,7 @@ export default function HomePage() {
               Ready to discover your next favorite book?
             </h2>
             <p className="mb-8 text-lg leading-relaxed text-primary-foreground/90">
-              Join WonderBookClub today and become part of a welcoming community that celebrates stories, ideas, and the
+              Join ReadLoungeClub today and become part of a welcoming community that celebrates stories, ideas, and the
               joy of reading.
             </p>
             <Button asChild size="lg" className="bg-accent hover:bg-accent/90">

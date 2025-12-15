@@ -4,8 +4,8 @@ import Link from "next/link"
 import { BookOpen, MessageCircle, Calendar, Users } from "lucide-react"
 
 export const metadata = {
-  title: "Book Club Details - WonderBookClub",
-  description: "Learn how WonderBookClub works, what to expect, and how to participate in our thoughtful discussions.",
+  title: "Book Club Details - ReadLoungeClub",
+  description: "Learn how ReadLoungeClub works, what to expect, and how to participate in our thoughtful discussions.",
 }
 
 export default function BookClubPage() {
@@ -65,7 +65,7 @@ export default function BookClubPage() {
         </div>
         <div className="container relative z-10 mx-auto px-4">
           <h1 className="mb-6 text-center font-serif text-4xl font-bold text-balance md:text-5xl">
-            How WonderBookClub Works
+            How ReadLoungeClub Works
           </h1>
           <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-primary-foreground/90">
             Join a welcoming community of curious readers in thoughtful conversations about books that inspire
@@ -162,7 +162,7 @@ export default function BookClubPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="mb-4 font-serif text-3xl font-bold text-balance">Ready to Start Your Reading Journey?</h2>
           <p className="mb-8 text-lg leading-relaxed text-primary-foreground/90">
-            Join WonderBookClub today and become part of a community that celebrates curiosity and conversation.
+            Join ReadLoungeClub today and become part of a community that celebrates curiosity and conversation.
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
             <Link href="/membership">Become a Member</Link>

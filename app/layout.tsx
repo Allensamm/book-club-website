@@ -20,9 +20,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "WonderBookClub - Where Curiosity Meets Literature",
+  title: "ReadLoungeClub - Where Curiosity Meets Literature",
   description:
-    "Join WonderBookClub, a thoughtful community of readers exploring diverse stories and ideas. Discover new perspectives through curated book selections and engaging discussions.",
+    "Join ReadLoungeClub, a thoughtful community of readers exploring diverse stories and ideas. Discover new perspectives through curated book selections and engaging discussions.",
   generator: "v0.app",
   icons: {
     icon: [

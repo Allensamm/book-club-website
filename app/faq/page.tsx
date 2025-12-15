@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export const metadata = {
-  title: "FAQ - WonderBookClub",
-  description: "Frequently asked questions about WonderBookClub membership and book discussions.",
+  title: "FAQ - ReadLoungeClub",
+  description: "Frequently asked questions about ReadLoungeClub membership and book discussions.",
 }
 
 export default function FAQPage() {
@@ -12,7 +12,7 @@ export default function FAQPage() {
       category: "Membership",
       questions: [
         {
-          question: "How do I join WonderBookClub?",
+          question: "How do I join ReadLoungeClub?",
           answer:
             "Simply visit our Membership page and choose the plan that works best for you. You can sign up online and start participating immediately.",
         },
@@ -113,7 +113,7 @@ export default function FAQPage() {
             Frequently Asked Questions
           </h1>
           <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-primary-foreground/90">
-            Find answers to common questions about WonderBookClub membership and participation.
+            Find answers to common questions about ReadLoungeClub membership and participation.
           </p>
         </div>
       </section>
