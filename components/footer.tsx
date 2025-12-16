@@ -34,7 +34,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="mb-4 flex items-center">
-              <img src="/readloungeclub-logo.png" alt="ReadLoungeClub" className="h-10 w-auto" />
+              <img src="/readloungeclub-logo.jpg" alt="ReadLoungeClub" className="h-10 w-auto" />
             </Link>
             <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
               A thoughtful community where curious minds explore diverse stories and discover new perspectives through
