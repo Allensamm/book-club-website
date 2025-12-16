@@ -63,7 +63,7 @@ export default async function HomePage() {
       name: "James Chen",
       role: "Community Director",
       bio: "James creates welcoming spaces where readers connect. His background in education helps foster meaningful literary conversations.",
-      image: "/man-smiling-professional-portrait.jpg",
+      image: "/professional-man-in-suit-smiling.jpg",
     },
     {
       name: "Priya Kumar",
@@ -268,8 +268,8 @@ export default async function HomePage() {
               <div className="grid gap-8 md:grid-cols-2">
                 <div className="relative h-[300px] md:h-auto">
                   <img
-                    src="/professional-author-portrait-warm-lighting.jpg"
-                    alt="Featured author portrait"
+                    src="/elegant-host-reading-book.jpg"
+                    alt="Matt Haig - Featured author portrait"
                     className="h-full w-full object-cover"
                   />
                 </div>
