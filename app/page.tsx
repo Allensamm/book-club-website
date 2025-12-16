@@ -123,7 +123,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-                <Link href="/membership">Start Your Journey</Link>
+                <Link href="/register">Start Your Journey</Link>
               </Button>
               <Button
                 asChild
@@ -295,7 +295,7 @@ export default function HomePage() {
               joy of reading.
             </p>
             <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-              <Link href="/membership">Become a Member</Link>
+              <Link href="/register">Become a Member</Link>
             </Button>
           </div>
         </div>

@@ -198,8 +198,7 @@ export default function OurPicksClientPage() {
 
   const handleAction = (actionType: "audio" | "pdf" | "hardcover") => {
     if (!isMember) {
-      // Redirect to membership page if not a member
-      router.push("/membership")
+      router.push("/register")
       return
     }
 

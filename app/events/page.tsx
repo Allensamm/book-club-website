@@ -1,52 +1,53 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, MapPin, Users, Video } from "lucide-react"
+import { Calendar, Users } from "lucide-react"
+import Link from "next/link"
+import EventsClient from "./events-client"
+import { createClient } from "@/lib/supabase/server"
 
 export const metadata = {
   title: "Events - ReadLoungeClub",
   description: "Join our upcoming book discussions, author conversations, and literary gatherings.",
 }
 
-export default function EventsPage() {
-  const upcomingEvents = [
-    {
-      title: "January Book Discussion: The Midnight Library",
-      date: "January 28, 2025",
-      time: "7:00 PM EST",
-      location: "In-Person & Virtual",
-      type: "Book Discussion",
-      attendees: 45,
-      description:
-        "Join us for an engaging discussion about life choices, regrets, and the infinite possibilities between life and death.",
-    },
-    {
-      title: "Author Talk with Emily St. John Mandel",
-      date: "February 5, 2025",
-      time: "6:30 PM EST",
-      location: "Virtual Only",
-      type: "Author Event",
-      attendees: 120,
-      description: "An exclusive virtual conversation with the author of Station Eleven and The Glass Hotel.",
-    },
-    {
-      title: "Literary Trivia Night",
-      date: "February 12, 2025",
-      time: "8:00 PM EST",
-      location: "The Reading Room, NYC",
-      type: "Social Event",
-      attendees: 60,
-      description: "Test your literary knowledge in a fun, casual evening with fellow book lovers. Prizes for winners!",
-    },
-    {
-      title: "February Book Discussion: The Vanishing Half",
-      date: "February 25, 2025",
-      time: "7:00 PM EST",
-      location: "In-Person & Virtual",
-      type: "Book Discussion",
-      attendees: 52,
-      description: "Explore themes of identity, race, and family in this powerful multigenerational story.",
-    },
-  ]
+interface Event {
+  id: string
+  title: string
+  date: string
+  time: string
+  location: string
+  type: string
+  description: string
+  attendees: number
+}
+
+export default async function EventsPage() {
+  const supabase = await createClient()
+
+  const { data: eventsData, error } = await supabase.from("events").select("*").order("date", { ascending: true })
+
+  const upcomingEvents: Event[] = []
+  if (eventsData && !error) {
+    for (const event of eventsData) {
+      const { data: registrations } = await supabase
+        .from("event_registrations")
+        .select("number_of_attendees")
+        .eq("event_id", event.id)
+
+      const totalAttendees = registrations?.reduce((sum, reg) => sum + (reg.number_of_attendees || 0), 0) || 0
+
+      upcomingEvents.push({
+        id: event.id,
+        title: event.title,
+        date: event.date,
+        time: event.time,
+        location: event.location,
+        type: event.type,
+        description: event.description,
+        attendees: totalAttendees,
+      })
+    }
+  }
 
   const pastEvents = [
     {
@@ -93,53 +94,7 @@ export default function EventsPage() {
               Add to Calendar
             </Button>
           </div>
-          <div className="grid gap-8">
-            {upcomingEvents.map((event, index) => (
-              <Card key={index} className="overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="grid gap-6 md:grid-cols-[auto_1fr] md:gap-8">
-                    {/* Date Badge */}
-                    <div className="bg-accent p-6 text-center text-accent-foreground md:w-32">
-                      <div className="font-serif text-3xl font-bold">{new Date(event.date).getDate()}</div>
-                      <div className="text-sm">
-                        {new Date(event.date).toLocaleDateString("en-US", { month: "short" })}
-                      </div>
-                    </div>
-
-                    {/* Event Details */}
-                    <div className="flex flex-col justify-center p-6 md:py-6 md:pr-6 md:pl-0">
-                      <div className="mb-2 inline-block w-fit rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                        {event.type}
-                      </div>
-                      <h3 className="mb-3 font-serif text-2xl font-bold">{event.title}</h3>
-                      <p className="mb-4 text-muted-foreground">{event.description}</p>
-
-                      <div className="mb-4 flex flex-wrap gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {event.location.includes("Virtual") ? (
-                            <Video className="h-4 w-4" />
-                          ) : (
-                            <MapPin className="h-4 w-4" />
-                          )}
-                          <span>{event.location}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Users className="h-4 w-4" />
-                          <span>{event.attendees} registered</span>
-                        </div>
-                      </div>
-
-                      <Button className="w-fit bg-accent hover:bg-accent/90">Register for Event</Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <EventsClient events={upcomingEvents} />
         </div>
       </section>
 
@@ -172,8 +127,8 @@ export default function EventsPage() {
             <p className="mb-8 text-lg leading-relaxed text-primary-foreground/90">
               Members receive priority registration and exclusive access to all ReadLoungeClub events.
             </p>
-            <Button size="lg" className="bg-accent hover:bg-accent/90">
-              Become a Member
+            <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+              <Link href="/register">Become a Member</Link>
             </Button>
           </div>
         </div>

@@ -37,7 +37,7 @@ export function Header() {
 
         <div className="hidden md:block">
           <Button asChild className="bg-accent hover:bg-accent/90">
-            <Link href="/membership">Join Now</Link>
+            <Link href="/register">Join Now</Link>
           </Button>
         </div>
 
@@ -62,7 +62,7 @@ export function Header() {
               </Link>
             ))}
             <Button asChild className="mt-2 bg-accent hover:bg-accent/90">
-              <Link href="/membership">Join Now</Link>
+              <Link href="/register">Join Now</Link>
             </Button>
           </div>
         </nav>

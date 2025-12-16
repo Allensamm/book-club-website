@@ -112,7 +112,7 @@ export default function BlogPostPage() {
                 Become a member to participate in our monthly book discussions and connect with fellow readers.
               </p>
               <Button asChild className="bg-accent hover:bg-accent/90">
-                <Link href="/membership">Become a Member</Link>
+                <Link href="/register">Become a Member</Link>
               </Button>
             </div>
           </div>

@@ -165,7 +165,7 @@ export default function BookClubPage() {
             Join ReadLoungeClub today and become part of a community that celebrates curiosity and conversation.
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-            <Link href="/membership">Become a Member</Link>
+            <Link href="/register">Become a Member</Link>
           </Button>
         </div>
       </section>
