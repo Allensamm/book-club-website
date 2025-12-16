@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { BookOpen, Users, Calendar, Award, Quote } from "lucide-react"
+import { BookFlipSection } from "@/components/book-flip-section"
 
 export default function HomePage() {
   const features = [
@@ -182,6 +183,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Interactive Book Flip Section */}
+      <BookFlipSection />
 
       {/* Author Spotlight Section */}
       <section className="py-16 md:py-24">
