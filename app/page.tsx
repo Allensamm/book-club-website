@@ -16,7 +16,7 @@ export default async function HomePage() {
   const featuredBook = featuredBookData || {
     title: "The Midnight Library",
     author: "Matt Haig",
-    cover_url: "/book-cover-midnight-library.jpg",
+    cover_url: "/the-midnight-library-book-cover.jpg",
     description:
       "A dazzling novel about all the choices that go into a life well lived, from the internationally bestselling author of Reasons to Stay Alive and How To Stop Time.",
     genre: "Fiction, Philosophy",

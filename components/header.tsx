@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
@@ -17,13 +18,19 @@ export function Header() {
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
   ]
-  // </CHANGE>
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center">
-          <img src="/readloungeclub-logo.jpg" alt="ReadLoungeClub" className="h-10 w-auto" />
+          <Image
+            src="/readloungeclub-logo.jpg"
+            alt="ReadLoungeClub"
+            width={120}
+            height={40}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
