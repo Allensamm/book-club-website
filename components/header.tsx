@@ -14,10 +14,10 @@ export function Header() {
     { href: "/book-club", label: "Book Club" },
     { href: "/books", label: "Our Picks" },
     { href: "/events", label: "Events" },
-    { href: "/membership", label: "Membership" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
   ]
+  // </CHANGE>
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

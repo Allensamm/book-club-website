@@ -4,27 +4,20 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { CreditCard, Wallet, Phone, CheckCircle2, ArrowLeft } from "lucide-react"
+import { Phone, CheckCircle2, ArrowLeft } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { StripeCheckout } from "@/components/stripe-checkout"
 
 export function PaymentForm() {
   const router = useRouter()
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "paypal" | "defer">("card")
+  const [paymentMethod, setPaymentMethod] = useState<"stripe" | "defer">("stripe")
   const [isProcessing, setIsProcessing] = useState(false)
   const [showSuccessModal, setShowSuccessModal] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<any>(null)
   const [registrationData, setRegistrationData] = useState<any>(null)
-
-  const [cardData, setCardData] = useState({
-    cardNumber: "",
-    cardName: "",
-    expiryDate: "",
-    cvv: "",
-  })
 
   useEffect(() => {
     // Load selected plan and registration data
@@ -40,19 +33,10 @@ export function PaymentForm() {
     }
   }, [router])
 
-  const handlePayment = async () => {
+  const handleDeferPayment = async () => {
     setIsProcessing(true)
 
     try {
-      console.log("[v0] Starting payment processing...")
-      console.log("[v0] Payment method:", paymentMethod)
-      console.log("[v0] Registration data:", registrationData)
-      console.log("[v0] Selected plan:", selectedPlan)
-
-      // Simulate payment processing
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      // Save to Supabase
       const supabase = createClient()
 
       if (registrationData && selectedPlan) {
@@ -72,20 +56,15 @@ export function PaymentForm() {
           newsletter_recommendations: registrationData.newsletterRecommendations || false,
           newsletter_events: registrationData.newsletterEvents || false,
           event_updates: registrationData.eventUpdates || false,
-          payment_method: paymentMethod,
-          payment_status: paymentMethod === "defer" ? "pending" : "completed",
+          payment_method: "defer",
+          payment_status: "pending",
         }
 
-        console.log("[v0] Inserting registration payload:", registrationPayload)
-
-        const { data, error } = await supabase.from("member_registrations").insert([registrationPayload]).select()
+        const { error } = await supabase.from("member_registrations").insert([registrationPayload])
 
         if (error) {
-          console.error("[v0] Supabase error:", error)
           throw new Error(error.message)
         }
-
-        console.log("[v0] Registration saved successfully:", data)
       }
 
       // Clear localStorage
@@ -166,30 +145,20 @@ export function PaymentForm() {
             <CardContent className="space-y-6">
               <RadioGroup value={paymentMethod} onValueChange={(value: any) => setPaymentMethod(value)}>
                 <div className="space-y-4">
-                  {/* Card Payment */}
                   <div
-                    className={`rounded-lg border-2 p-4 cursor-pointer transition-all ${paymentMethod === "card" ? "border-accent bg-accent/5" : "border-border"}`}
+                    className={`rounded-lg border-2 p-4 cursor-pointer transition-all ${paymentMethod === "stripe" ? "border-accent bg-accent/5" : "border-border"}`}
                   >
                     <div className="flex items-center space-x-3">
-                      <RadioGroupItem value="card" id="card" />
-                      <Label htmlFor="card" className="flex items-center gap-2 cursor-pointer font-semibold">
-                        <CreditCard className="h-5 w-5" />
-                        Credit or Debit Card
+                      <RadioGroupItem value="stripe" id="stripe" />
+                      <Label htmlFor="stripe" className="cursor-pointer font-semibold">
+                        Credit Card or PayPal
                       </Label>
                     </div>
-                  </div>
-
-                  {/* PayPal */}
-                  <div
-                    className={`rounded-lg border-2 p-4 cursor-pointer transition-all ${paymentMethod === "paypal" ? "border-accent bg-accent/5" : "border-border"}`}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <RadioGroupItem value="paypal" id="paypal" />
-                      <Label htmlFor="paypal" className="flex items-center gap-2 cursor-pointer font-semibold">
-                        <Wallet className="h-5 w-5" />
-                        PayPal
-                      </Label>
-                    </div>
+                    {paymentMethod === "stripe" && (
+                      <p className="mt-3 text-sm text-muted-foreground ml-8">
+                        Pay securely with your credit card or PayPal account
+                      </p>
+                    )}
                   </div>
 
                   {/* Defer Payment */}
@@ -213,82 +182,27 @@ export function PaymentForm() {
                 </div>
               </RadioGroup>
 
-              {/* Card Payment Form */}
-              {paymentMethod === "card" && (
-                <div className="space-y-4 pt-4 border-t">
-                  <div className="space-y-2">
-                    <Label htmlFor="cardNumber">Card Number</Label>
-                    <Input
-                      id="cardNumber"
-                      placeholder="1234 5678 9012 3456"
-                      value={cardData.cardNumber}
-                      onChange={(e) => setCardData({ ...cardData, cardNumber: e.target.value })}
-                      maxLength={19}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="cardName">Cardholder Name</Label>
-                    <Input
-                      id="cardName"
-                      placeholder="John Doe"
-                      value={cardData.cardName}
-                      onChange={(e) => setCardData({ ...cardData, cardName: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <Label htmlFor="expiryDate">Expiry Date</Label>
-                      <Input
-                        id="expiryDate"
-                        placeholder="MM/YY"
-                        value={cardData.expiryDate}
-                        onChange={(e) => setCardData({ ...cardData, expiryDate: e.target.value })}
-                        maxLength={5}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="cvv">CVV</Label>
-                      <Input
-                        id="cvv"
-                        placeholder="123"
-                        value={cardData.cvv}
-                        onChange={(e) => setCardData({ ...cardData, cvv: e.target.value })}
-                        maxLength={4}
-                        type="password"
-                      />
-                    </div>
-                  </div>
+              {paymentMethod === "stripe" && selectedPlan.productId && (
+                <div className="pt-4 border-t">
+                  <StripeCheckout productId={selectedPlan.productId} />
                 </div>
               )}
 
-              {/* PayPal Info */}
-              {paymentMethod === "paypal" && (
-                <div className="pt-4 border-t">
-                  <p className="text-sm text-muted-foreground">
-                    You'll be redirected to PayPal to complete your payment securely.
+              {paymentMethod === "defer" && (
+                <div className="pt-6">
+                  <Button
+                    onClick={handleDeferPayment}
+                    disabled={isProcessing}
+                    size="lg"
+                    className="w-full bg-accent hover:bg-accent/90"
+                  >
+                    {isProcessing ? "Processing..." : "Submit Registration"}
+                  </Button>
+                  <p className="text-center text-xs text-muted-foreground mt-4">
+                    By completing this registration, you agree to our Terms of Service and Privacy Policy
                   </p>
                 </div>
               )}
-
-              <div className="pt-6">
-                <Button
-                  onClick={handlePayment}
-                  disabled={isProcessing}
-                  size="lg"
-                  className="w-full bg-accent hover:bg-accent/90"
-                >
-                  {isProcessing
-                    ? "Processing..."
-                    : paymentMethod === "defer"
-                      ? "Submit Registration"
-                      : `Pay ${selectedPlan.price} Now`}
-                </Button>
-                <p className="text-center text-xs text-muted-foreground mt-4">
-                  By completing this purchase, you agree to our Terms of Service and Privacy Policy
-                </p>
-              </div>
             </CardContent>
           </Card>
         </div>
@@ -302,13 +216,9 @@ export function PaymentForm() {
                 <CheckCircle2 className="h-10 w-10 text-accent" />
               </div>
             </div>
-            <DialogTitle className="text-center font-serif text-2xl">
-              {paymentMethod === "defer" ? "Registration Received!" : "Welcome to ReadLoungeClub!"}
-            </DialogTitle>
+            <DialogTitle className="text-center font-serif text-2xl">Registration Received!</DialogTitle>
             <DialogDescription className="text-center pt-2">
-              {paymentMethod === "defer"
-                ? "We've received your registration. Our team will contact you shortly to arrange payment."
-                : "Thank you for joining our community! Check your email for next steps and exclusive member content."}
+              We've received your registration. Our team will contact you shortly to arrange payment.
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center pt-4">

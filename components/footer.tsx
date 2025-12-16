@@ -6,7 +6,6 @@ export function Footer() {
     About: [
       { href: "/about", label: "Our Story" },
       { href: "/book-club", label: "How It Works" },
-      { href: "/membership", label: "Membership" },
     ],
     Resources: [
       { href: "/books", label: "Book Selections" },
@@ -24,8 +23,9 @@ export function Footer() {
     { href: "#", icon: Facebook, label: "Facebook" },
     { href: "#", icon: Twitter, label: "Twitter" },
     { href: "#", icon: Instagram, label: "Instagram" },
-    { href: "#", icon: Mail, label: "Email" },
+    { href: "mailto:readlounge.club@gmail.com", icon: Mail, label: "Email" },
   ]
+  // </CHANGE>
 
   return (
     <footer className="border-t border-border bg-muted/30">
@@ -40,6 +40,16 @@ export function Footer() {
               A thoughtful community where curious minds explore diverse stories and discover new perspectives through
               the written word.
             </p>
+            <div className="mb-4">
+              <a
+                href="mailto:readlounge.club@gmail.com"
+                className="text-sm text-accent hover:underline flex items-center gap-2"
+              >
+                <Mail className="h-4 w-4" />
+                readlounge.club@gmail.com
+              </a>
+            </div>
+            {/* </CHANGE> */}
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a
