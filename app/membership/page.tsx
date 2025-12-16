@@ -5,28 +5,33 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Check } from "lucide-react"
 import { useMembership } from "@/components/membership-provider"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 
 export default function MembershipPage() {
-  const { isMember, toggleMembership } = useMembership()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const fromRegister = searchParams.get("from") === "register"
+  const { isMember, toggleMembership } = useMembership()
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
 
-  const handleSelectPlan = (planName: string, price: string) => {
-    if (!isMember) {
-      toggleMembership()
-      setSelectedPlan(planName)
-      alert(
-        `🎉 Welcome to ReadLoungeClub!\n\nYou've successfully joined as a ${planName} member at ${price}/month.\n\nYou now have access to all member benefits including audiobooks, PDFs, and book ordering!`,
-      )
-      setTimeout(() => {
-        router.push("/")
-      }, 2000)
-    } else {
-      alert(`You're already a member! If you'd like to change your plan to ${planName}, please contact us.`)
+  useEffect(() => {
+    if (fromRegister) {
+      window.scrollTo({ top: 0, behavior: "smooth" })
     }
+  }, [fromRegister])
+
+  const handleSelectPlan = (planName: string, price: string) => {
+    localStorage.setItem(
+      "selectedPlan",
+      JSON.stringify({
+        name: planName,
+        price: price,
+        timestamp: Date.now(),
+      }),
+    )
+    router.push("/payment")
   }
 
   const plans = [
@@ -105,6 +110,12 @@ export default function MembershipPage() {
             Choose the membership that fits your reading life and start discovering wonderful stories with our
             community.
           </p>
+          {fromRegister && (
+            <div className="mx-auto mt-6 max-w-md rounded-lg bg-accent/20 px-6 py-4 text-center backdrop-blur-sm">
+              <p className="font-semibold text-lg">✓ Registration Complete!</p>
+              <p className="text-sm mt-1 text-primary-foreground/90">Now select your membership plan below</p>
+            </div>
+          )}
           {isMember && (
             <div className="mx-auto mt-6 max-w-md rounded-lg bg-accent/20 px-6 py-3 text-center">
               <p className="font-semibold">✓ You're already a member!</p>

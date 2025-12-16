@@ -30,13 +30,12 @@ export function RegisterForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // TODO: Replace with actual endpoint when provided
-    console.log("Form data:", formData)
+    localStorage.setItem("pendingRegistration", JSON.stringify(formData))
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    setIsSubmitted(true)
+    window.location.href = "/membership?from=register"
   }
 
   const handleInputChange = (field: string, value: string | boolean) => {
