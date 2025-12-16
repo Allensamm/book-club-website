@@ -44,6 +44,11 @@ export function PaymentForm() {
     setIsProcessing(true)
 
     try {
+      console.log("[v0] Starting payment processing...")
+      console.log("[v0] Payment method:", paymentMethod)
+      console.log("[v0] Registration data:", registrationData)
+      console.log("[v0] Selected plan:", selectedPlan)
+
       // Simulate payment processing
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
@@ -51,28 +56,32 @@ export function PaymentForm() {
       const supabase = createClient()
 
       if (registrationData && selectedPlan) {
-        const { data, error } = await supabase
-          .from("member_registrations")
-          .insert([
-            {
-              first_name: registrationData.firstName || "",
-              last_name: registrationData.lastName || "",
-              email: registrationData.email || "",
-              phone: registrationData.phone || null,
-              membership_tier: selectedPlan.name?.toLowerCase() || "explorer",
-              interests: registrationData.interests || [],
-              how_heard: registrationData.howHeard || null,
-              message: registrationData.message || null,
-              newsletter: registrationData.newsletter || false,
-              event_updates: registrationData.eventUpdates || false,
-              payment_method: paymentMethod,
-              payment_status: paymentMethod === "defer" ? "pending" : "completed",
-            },
-          ])
-          .select()
+        const registrationPayload = {
+          first_name: registrationData.firstName || "",
+          last_name: registrationData.lastName || "",
+          email: registrationData.email || "",
+          phone: registrationData.phone || null,
+          membership_tier: selectedPlan.name?.toLowerCase() || "explorer",
+          address: registrationData.address || null,
+          city: registrationData.city || null,
+          postal_code: registrationData.postalCode || null,
+          country: registrationData.country || null,
+          favorite_genres: registrationData.favoriteGenres || [],
+          reading_frequency: registrationData.readingFrequency || null,
+          newsletter_updates: registrationData.newsletterUpdates || false,
+          newsletter_recommendations: registrationData.newsletterRecommendations || false,
+          newsletter_events: registrationData.newsletterEvents || false,
+          event_updates: registrationData.eventUpdates || false,
+          payment_method: paymentMethod,
+          payment_status: paymentMethod === "defer" ? "pending" : "completed",
+        }
+
+        console.log("[v0] Inserting registration payload:", registrationPayload)
+
+        const { data, error } = await supabase.from("member_registrations").insert([registrationPayload]).select()
 
         if (error) {
-          console.error("[v0] Error saving registration:", error)
+          console.error("[v0] Supabase error:", error)
           throw new Error(error.message)
         }
 
