@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { BookOpen, Users, Calendar, Award, Quote } from "lucide-react"
 import { BookFlipSection } from "@/components/book-flip-section"
+import { AnimatedCounter } from "@/components/animated-counter"
 
 export default function HomePage() {
   const features = [
@@ -169,17 +170,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <h2 className="mb-12 text-center font-serif text-3xl font-bold">Our reading community</h2>
           <div className="grid gap-8 md:grid-cols-4">
-            {[
-              { number: "12,000+", label: "Curious Readers" },
-              { number: "180+", label: "Books Explored" },
-              { number: "1,500+", label: "Thoughtful Discussions" },
-              { number: "85+", label: "Author Conversations" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="mb-2 font-serif text-4xl font-bold text-accent md:text-5xl">{stat.number}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
+            <AnimatedCounter end={12000} suffix="+" label="Curious Readers" />
+            <AnimatedCounter end={180} suffix="+" label="Books Explored" />
+            <AnimatedCounter end={1500} suffix="+" label="Thoughtful Discussions" />
+            <AnimatedCounter end={85} suffix="+" label="Author Conversations" />
           </div>
         </div>
       </section>

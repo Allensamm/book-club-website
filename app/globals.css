@@ -123,4 +123,38 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Add global hover animations for interactive elements */
+  button:not(:disabled),
+  a,
+  [role="button"]:not([aria-disabled="true"]) {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  button:not(:disabled):hover,
+  a:hover,
+  [role="button"]:not([aria-disabled="true"]):hover {
+    transform: scale(1.05);
+  }
+
+  /* Card hover animation */
+  [data-slot="card"] {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  [data-slot="card"]:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Prevent nested scaling for clickable elements inside cards */
+  [data-slot="card"]:hover button,
+  [data-slot="card"]:hover a {
+    transform: scale(1);
+  }
+
+  [data-slot="card"]:hover button:hover,
+  [data-slot="card"]:hover a:hover {
+    transform: scale(1.05);
+  }
 }
