@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import StickyCTAButton from "@/components/sticky-cta-button"
 import Header from "@/components/header"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -83,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
         <script
@@ -123,10 +124,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans antialiased`}>
-        <Header />
-        <StickyCTAButton />
-        {children}
-        <Analytics />
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <Header />
+          <StickyCTAButton />
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

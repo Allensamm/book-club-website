@@ -5,14 +5,16 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Sun, Moon } from "lucide-react"
 import Image from "next/image"
+import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const { theme, setTheme } = useTheme()
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, anchor: string) => {
     e.preventDefault()
@@ -92,6 +94,14 @@ export default function Header() {
           >
             Guide for Non-Authors
           </Link>
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="p-2 rounded-md text-foreground hover:bg-muted transition-colors"
+            aria-label="Toggle theme"
+          >
+            <Sun className="h-5 w-5 hidden dark:block" />
+            <Moon className="h-5 w-5 block dark:hidden" />
+          </button>
           <Button
             onClick={handleCTAClick}
             className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white transition-all hover:shadow-lg active:scale-95 whitespace-nowrap"
@@ -132,6 +142,15 @@ export default function Header() {
               <Link href="/guide-for-non-authors" className="text-foreground hover:text-primary transition-colors pl-2">
                 Guide for Non-Authors
               </Link>
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              >
+                <Sun className="h-5 w-5 hidden dark:block" />
+                <Moon className="h-5 w-5 block dark:hidden" />
+                <span className="dark:hidden">Dark Mode</span>
+                <span className="hidden dark:inline">Light Mode</span>
+              </button>
               <Button
                 onClick={handleCTAClick}
                 className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
