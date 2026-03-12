@@ -1,47 +1,80 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
+import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { MembershipProvider } from "@/components/membership-provider"
-import { ThemeProvider } from "@/components/theme-provider"
+import StickyCTAButton from "@/components/sticky-cta-button"
+import Header from "@/components/header"
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-})
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-})
+const _geist = Geist({ subsets: ["latin"] })
+const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "ReadLoungeClub - Where Curiosity Meets Literature",
+  title: "JOINTASK - Book Writing, Editing & Marketing Services | Author Support Agency",
   description:
-    "Join ReadLoungeClub, a thoughtful community of readers exploring diverse stories and ideas. Discover new perspectives through curated book selections and engaging discussions.",
-  generator: "v0.app",
-  icons: {
-    icon: [
+    "Award-winning book agency specializing in ghostwriting, editing, publishing, design, and marketing. We help authors in the US and Europe publish and sell more books. Expert SEO, Amazon KDP, and book cover design.",
+  keywords: [
+    "book marketing services",
+    "ghostwriting services",
+    "book editing services",
+    "Amazon KDP publishing",
+    "book cover design",
+    "author marketing",
+    "content writing",
+    "manuscript editing",
+    "book publishing services",
+    "author website design",
+    "SEO for authors",
+    "book promotion",
+    "independent publishing",
+    "story development",
+    "proofreading services",
+    "book formatting",
+  ],
+  authors: [{ name: "JOINTASK" }],
+  creator: "JOINTASK",
+  publisher: "JOINTASK",
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://jointask.com",
+    siteName: "JOINTASK - Book Publishing & Marketing Agency",
+    title: "JOINTASK - Professional Book Publishing & Marketing Services",
+    description:
+      "Expert ghostwriting, editing, publishing, and marketing for authors worldwide. Trusted by 100+ companies. Ranked #1 for book services.",
+    images: [
       {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
+        url: "https://jointask.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "JOINTASK - Book Publishing & Marketing Agency",
       },
     ],
-    apple: "/apple-icon.png",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "JOINTASK - Book Publishing & Marketing Services",
+    description: "Professional book writing, editing, publishing & marketing for authors",
+    images: ["https://jointask.com/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://jointask.com",
+  },
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -50,16 +83,50 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "JOINTASK",
+              url: "https://jointask.com",
+              logo: "https://jointask.com/logo.png",
+              description: "Professional book publishing and marketing agency",
+              sameAs: ["https://www.fiverr.com/jointask", "https://www.upwork.com/agencies/~jointask"],
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "US",
+              },
+              areaServed: ["US", "GB", "CA", "AU", "IE"],
+              serviceType: ["Book Writing", "Book Editing", "Book Publishing", "Book Marketing", "Book Design"],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "JOINTASK",
+              description: "Book Publishing & Marketing Agency",
+              url: "https://jointask.com",
+              telephone: "+1-800-BOOK-123",
+              areaServed: ["US", "GB", "CA", "AU", "IE", "Europe"],
+              priceRange: "$$",
+            }),
+          }}
+        />
+      </head>
       <body className={`font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <MembershipProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-            <Analytics />
-          </MembershipProvider>
-        </ThemeProvider>
+        <Header />
+        <StickyCTAButton />
+        {children}
+        <Analytics />
       </body>
     </html>
   )

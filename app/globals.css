@@ -4,80 +4,80 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* New literary/elegant book club color scheme */
-  /* Deep Forest Green, Warm Parchment, Burgundy, Muted Gold, Soft Charcoal */
-  --background: oklch(0.97 0.01 85); /* Warm Parchment base */
-  --foreground: oklch(0.23 0.01 150); /* Soft Charcoal for text */
+  /* Updated color palette to match JOINTASK logo (teal, blue, orange, yellow) */
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.15 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.23 0.01 150);
+  --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.23 0.01 150);
-  --primary: oklch(0.28 0.045 155); /* Deep Forest Green */
-  --primary-foreground: oklch(0.97 0.01 85);
-  --secondary: oklch(0.38 0.06 25); /* Burgundy Wine */
-  --secondary-foreground: oklch(0.97 0.01 85);
-  --muted: oklch(0.94 0.01 85);
-  --muted-foreground: oklch(0.5 0.01 150);
-  --accent: oklch(0.65 0.08 75); /* Muted Gold */
-  --accent-foreground: oklch(0.23 0.01 150);
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.52 0.22 200);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.65 0.2 185);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.93 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.62 0.25 40);
+  --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.98 0.005 90);
-  --border: oklch(0.88 0.01 85);
-  --input: oklch(0.88 0.01 85);
-  --ring: oklch(0.65 0.08 75);
-  --chart-1: oklch(0.28 0.045 155);
-  --chart-2: oklch(0.38 0.06 25);
-  --chart-3: oklch(0.65 0.08 75);
-  --chart-4: oklch(0.5 0.06 180);
-  --chart-5: oklch(0.45 0.05 40);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.95 0 0);
+  --ring: oklch(0.52 0.22 200);
+  --chart-1: oklch(0.52 0.22 200);
+  --chart-2: oklch(0.65 0.2 185);
+  --chart-3: oklch(0.62 0.25 40);
+  --chart-4: oklch(0.6 0.22 50);
+  --chart-5: oklch(0.56 0.24 35);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.52 0.22 200);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.93 0 0);
+  --sidebar-accent-foreground: oklch(0.15 0 0);
+  --sidebar-border: oklch(0.92 0 0);
+  --sidebar-ring: oklch(0.52 0.22 200);
 }
 
 .dark {
-  --background: oklch(0.2 0.02 155);
-  --foreground: oklch(0.95 0.01 85);
-  --card: oklch(0.25 0.025 155);
-  --card-foreground: oklch(0.95 0.01 85);
-  --popover: oklch(0.25 0.025 155);
-  --popover-foreground: oklch(0.95 0.01 85);
-  --primary: oklch(0.35 0.055 155);
-  --primary-foreground: oklch(0.97 0.01 85);
-  --secondary: oklch(0.42 0.07 25);
-  --secondary-foreground: oklch(0.97 0.01 85);
-  --muted: oklch(0.3 0.025 155);
-  --muted-foreground: oklch(0.65 0.01 85);
-  --accent: oklch(0.65 0.08 75);
-  --accent-foreground: oklch(0.23 0.01 150);
-  --destructive: oklch(0.45 0.18 27.325);
-  --destructive-foreground: oklch(0.98 0.005 90);
-  --border: oklch(0.3 0.025 155);
-  --input: oklch(0.3 0.025 155);
-  --ring: oklch(0.65 0.08 75);
-  --chart-1: oklch(0.5 0.08 155);
-  --chart-2: oklch(0.55 0.09 25);
-  --chart-3: oklch(0.7 0.1 75);
-  --chart-4: oklch(0.6 0.08 180);
-  --chart-5: oklch(0.58 0.07 40);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.15 0 0);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.65 0.22 200);
+  --primary-foreground: oklch(0.12 0 0);
+  --secondary: oklch(0.7 0.2 185);
+  --secondary-foreground: oklch(0.12 0 0);
+  --muted: oklch(0.28 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.7 0.25 40);
+  --accent-foreground: oklch(0.12 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.92 0 0);
+  --border: oklch(0.25 0 0);
+  --input: oklch(0.2 0 0);
+  --ring: oklch(0.65 0.22 200);
+  --chart-1: oklch(0.65 0.22 200);
+  --chart-2: oklch(0.7 0.2 185);
+  --chart-3: oklch(0.7 0.25 40);
+  --chart-4: oklch(0.68 0.22 50);
+  --chart-5: oklch(0.64 0.24 35);
+  --sidebar: oklch(0.15 0 0);
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-primary: oklch(0.65 0.22 200);
+  --sidebar-primary-foreground: oklch(0.12 0 0);
+  --sidebar-accent: oklch(0.28 0 0);
+  --sidebar-accent-foreground: oklch(0.95 0 0);
+  --sidebar-border: oklch(0.25 0 0);
+  --sidebar-ring: oklch(0.65 0.22 200);
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -123,38 +123,219 @@
   body {
     @apply bg-background text-foreground;
   }
+}
 
-  /* Add global hover animations for interactive elements */
-  button:not(:disabled),
-  a,
-  [role="button"]:not([aria-disabled="true"]) {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+/* Add custom animations for the full site */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-
-  button:not(:disabled):hover,
-  a:hover,
-  [role="button"]:not([aria-disabled="true"]):hover {
-    transform: scale(1.05);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  /* Card hover animation */
-  [data-slot="card"] {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-
-  [data-slot="card"]:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  /* Prevent nested scaling for clickable elements inside cards */
-  [data-slot="card"]:hover button,
-  [data-slot="card"]:hover a {
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
     transform: scale(1);
   }
+}
 
-  [data-slot="card"]:hover button:hover,
-  [data-slot="card"]:hover a:hover {
-    transform: scale(1.05);
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(var(--primary-rgb), 0.6);
+  }
+}
+
+/* Added celestial animation keyframes */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-30px) translateX(15px);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(15deg);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(-20deg);
+  }
+}
+
+@keyframes float-fast {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Added spin and pulse keyframes for globe component */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes float-orbs {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-30px) translateX(15px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown 0.5s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Added celestial animation utilities */
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 12s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float-slower 15s ease-in-out infinite;
+  }
+
+  .animate-float-fast {
+    animation: float-fast 6s ease-in-out infinite;
+  }
+
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  .animate-orb {
+    animation: float-orbs 4s ease-in-out infinite;
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
   }
 }

@@ -1,163 +1,137 @@
+import type { Metadata } from "next"
 import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Calendar, User, ArrowRight } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 
-export const metadata = {
-  title: "Blog - Literary Circle",
-  description: "Articles, insights, and recommendations from our community of readers.",
+const blogPosts = [
+  {
+    slug: "amazon-kdp-self-publishing-guide",
+    title: "Complete Guide to Amazon KDP Self-Publishing in 2024",
+    excerpt:
+      "Learn everything you need to know about self-publishing on Amazon KDP, from manuscript preparation to maximizing sales.",
+    date: "2024-01-15",
+    category: "Publishing",
+    readTime: "8 min read",
+    image: "/amazon-kdp-self-publishing-guide.jpg",
+  },
+  {
+    slug: "book-marketing-strategies-2024",
+    title: "Top 10 Book Marketing Strategies to Increase Sales",
+    excerpt:
+      "Discover proven marketing strategies that help authors reach more readers and increase book sales in competitive markets.",
+    date: "2024-01-12",
+    category: "Marketing",
+    readTime: "10 min read",
+    image: "/book-marketing-strategies.jpg",
+  },
+  {
+    slug: "ghostwriting-costs-benefits",
+    title: "Ghostwriting for Authors: Costs, Benefits & Process",
+    excerpt:
+      "A comprehensive guide to hiring a ghostwriter for your book, including costs, what to expect, and how to choose the right writer.",
+    date: "2024-01-10",
+    category: "Writing",
+    readTime: "7 min read",
+    image: "/ghostwriting-book-authors.jpg",
+  },
+  {
+    slug: "book-editing-mistakes-avoid",
+    title: "5 Critical Book Editing Mistakes Authors Must Avoid",
+    excerpt:
+      "Learn about the most common editing mistakes that can harm your book's quality and how professional editors prevent them.",
+    date: "2024-01-08",
+    category: "Editing",
+    readTime: "6 min read",
+    image: "/book-editing-mistakes.jpg",
+  },
+  {
+    slug: "author-branding-book-cover-design",
+    title: "Author Branding: Why Your Book Cover Design Matters",
+    excerpt:
+      "Explore how professional book cover design impacts your author brand and helps your book stand out in the market.",
+    date: "2024-01-05",
+    category: "Design",
+    readTime: "9 min read",
+    image: "/book-cover-design-author-branding.jpg",
+  },
+  {
+    slug: "seo-book-authors-online-visibility",
+    title: "SEO for Authors: Improve Your Online Visibility",
+    excerpt:
+      "Understand SEO fundamentals and how authors can optimize their websites and author platforms for better search engine rankings.",
+    date: "2024-01-01",
+    category: "SEO",
+    readTime: "11 min read",
+    image: "/seo-for-authors-online-visibility.jpg",
+  },
+]
+
+export const metadata: Metadata = {
+  title: "Blog - JOINTASK | Book Writing, Editing & Marketing Tips",
+  description:
+    "Expert tips and guides for authors on book writing, editing, marketing, publishing, and author branding. Learn from industry professionals.",
+  keywords: ["book writing blog", "author marketing", "self-publishing tips", "book editing guide", "author branding"],
+  openGraph: {
+    title: "JOINTASK Blog - Author Resources & Publishing Tips",
+    description: "Expert tips and guides for book authors on writing, editing, marketing, and publishing.",
+    type: "website",
+  },
 }
 
 export default function BlogPage() {
-  const posts = [
-    {
-      slug: "power-of-diverse-voices",
-      title: "The Power of Diverse Voices in Literature",
-      excerpt:
-        "Exploring how reading books from different cultures and perspectives enriches our understanding of the human experience.",
-      author: "Sarah Mitchell",
-      date: "January 15, 2025",
-      image: "/diverse-books-on-shelf.jpg",
-      category: "Discussion",
-    },
-    {
-      slug: "building-reading-habit",
-      title: "Building a Sustainable Reading Habit",
-      excerpt: "Practical tips and strategies to help you read more consistently, even with a busy schedule.",
-      author: "James Chen",
-      date: "January 10, 2025",
-      image: "/person-reading-book-cozy-setting.jpg",
-      category: "Tips",
-    },
-    {
-      slug: "great-discussions-guide",
-      title: "How to Lead Great Book Discussions",
-      excerpt: "A guide for facilitators on creating engaging, inclusive conversations about literature.",
-      author: "Maria Rodriguez",
-      date: "January 5, 2025",
-      image: "/book-club-discussion-group.jpg",
-      category: "Guide",
-    },
-    {
-      slug: "winter-reading-list",
-      title: "10 Cozy Reads for Winter",
-      excerpt: "Our curated list of books perfect for cold winter nights and lazy weekend afternoons.",
-      author: "Emily Park",
-      date: "December 28, 2024",
-      image: "/winter-reading-fireplace.jpg",
-      category: "Recommendations",
-    },
-    {
-      slug: "impact-of-book-clubs",
-      title: "The Social Impact of Book Clubs",
-      excerpt: "How book clubs build community, foster empathy, and create meaningful connections in our digital age.",
-      author: "David Thompson",
-      date: "December 20, 2024",
-      image: "/book-club-community-gathering.jpg",
-      category: "Discussion",
-    },
-    {
-      slug: "reading-mindfully",
-      title: "Reading Mindfully in a Distracted World",
-      excerpt: "Techniques for deep reading and how to fully immerse yourself in a book despite modern distractions.",
-      author: "Lisa Wong",
-      date: "December 15, 2024",
-      image: "/mindful-reading-peaceful.jpg",
-      category: "Tips",
-    },
-  ]
-
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative py-16 text-primary-foreground md:py-24">
-        <div className="absolute inset-0 z-0">
-          <img src="/winter-reading-fireplace.jpg" alt="Cozy Reading" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-primary/85" />
-        </div>
-        <div className="container relative z-10 mx-auto px-4">
-          <h1 className="mb-6 text-center font-serif text-4xl font-bold md:text-5xl">The Literary Circle Blog</h1>
-          <p className="mx-auto max-w-2xl text-center text-lg text-primary-foreground/90">
-            Insights, recommendations, and stories from our community of readers.
-          </p>
+    <main className="min-h-screen bg-background">
+      {/* Header */}
+      <section className="border-b bg-gradient-to-b from-accent/10 to-background py-16">
+        <div className="mx-auto max-w-4xl px-4">
+          <h1 className="text-4xl font-bold text-foreground md:text-5xl">Author Resources & Publishing Tips</h1>
+          <p className="mt-4 text-lg text-muted-foreground">Expert guides and strategies to help your book succeed</p>
         </div>
       </section>
 
-      {/* Featured Post */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="mb-4 inline-block rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-accent-foreground">
-            Featured Article
-          </div>
-          <Card className="overflow-hidden">
-            <div className="grid gap-6 md:grid-cols-2">
-              <img
-                src={posts[0].image || "/placeholder.svg"}
-                alt={posts[0].title}
-                className="h-full w-full object-cover"
-              />
-              <CardContent className="flex flex-col justify-center p-6 md:p-8">
-                <div className="mb-3 inline-block w-fit rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                  {posts[0].category}
-                </div>
-                <h2 className="mb-4 font-serif text-3xl font-bold">{posts[0].title}</h2>
-                <p className="mb-6 text-lg text-muted-foreground">{posts[0].excerpt}</p>
-                <div className="mb-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <User className="h-4 w-4" />
-                    <span>{posts[0].author}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    <span>{posts[0].date}</span>
-                  </div>
-                </div>
-                <Button asChild className="w-fit bg-accent hover:bg-accent/90">
-                  <Link href={`/blog/${posts[0].slug}`}>
-                    Read Article <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Recent Posts */}
-      <section className="bg-muted/30 py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="mb-12 font-serif text-3xl font-bold">Recent Articles</h2>
+      {/* Blog Posts Grid */}
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.slice(1).map((post, index) => (
-              <Card key={index} className="flex flex-col overflow-hidden">
-                <img src={post.image || "/placeholder.svg"} alt={post.title} className="h-48 w-full object-cover" />
-                <CardContent className="flex flex-1 flex-col p-6">
-                  <div className="mb-3 inline-block w-fit rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                    {post.category}
+            {blogPosts.map((post) => (
+              <article
+                key={post.slug}
+                className="flex flex-col overflow-hidden rounded-lg border bg-card transition-shadow hover:shadow-lg"
+              >
+                {/* Image */}
+                <div className="relative h-48 w-full overflow-hidden bg-muted">
+                  <img
+                    src={post.image || "/placeholder.svg"}
+                    alt={post.title}
+                    className="h-full w-full object-cover transition-transform hover:scale-105"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-center gap-3 text-sm">
+                    <span className="rounded-full bg-accent/10 px-3 py-1 text-accent font-medium">{post.category}</span>
+                    <span className="text-muted-foreground">{post.readTime}</span>
                   </div>
-                  <h3 className="mb-3 font-serif text-xl font-bold">{post.title}</h3>
-                  <p className="mb-4 flex-1 text-muted-foreground">{post.excerpt}</p>
-                  <div className="mb-4 flex flex-wrap gap-3 text-xs text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <User className="h-3 w-3" />
-                      <span>{post.author}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      <span>{post.date}</span>
-                    </div>
-                  </div>
-                  <Button asChild variant="ghost" className="w-fit p-0">
-                    <Link href={`/blog/${post.slug}`}>
-                      Read more <ArrowRight className="ml-2 h-4 w-4" />
+
+                  <h2 className="mt-4 text-xl font-bold text-foreground line-clamp-2">{post.title}</h2>
+                  <p className="mt-2 flex-1 text-muted-foreground line-clamp-3">{post.excerpt}</p>
+
+                  <div className="mt-4 flex items-center justify-between">
+                    <time className="text-sm text-muted-foreground">{new Date(post.date).toLocaleDateString()}</time>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-medium"
+                    >
+                      Read More
+                      <ChevronRight className="h-4 w-4" />
                     </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
-    </>
+    </main>
   )
 }

@@ -1,91 +1,134 @@
 import Link from "next/link"
-import { Facebook, Twitter, Instagram, Mail } from "lucide-react"
+import { Linkedin, Instagram, Facebook, Twitter } from "lucide-react"
 
-export function Footer() {
-  const footerLinks = {
-    About: [
-      { href: "/about", label: "Our Story" },
-      { href: "/book-club", label: "How It Works" },
-    ],
-    Resources: [
-      { href: "/books", label: "Book Selections" },
-      { href: "/events", label: "Events" },
-      { href: "/blog", label: "Blog" },
-    ],
-    Support: [
-      { href: "/contact", label: "Contact Us" },
-      { href: "/faq", label: "FAQ" },
-      { href: "/terms", label: "Terms & Privacy" },
-    ],
-  }
-
-  const socialLinks = [
-    { href: "#", icon: Facebook, label: "Facebook" },
-    { href: "#", icon: Twitter, label: "Twitter" },
-    { href: "#", icon: Instagram, label: "Instagram" },
-    { href: "mailto:readlounge.club@gmail.com", icon: Mail, label: "Email" },
-  ]
-  // </CHANGE>
-
+export default function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="mb-4 flex items-center">
-              <img src="/readloungeclub-logo.jpg" alt="ReadLoungeClub" className="h-10 w-auto" />
-            </Link>
-            <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-              A thoughtful community where curious minds explore diverse stories and discover new perspectives through
-              the written word.
-            </p>
-            <div className="mb-4">
-              <a
-                href="mailto:readlounge.club@gmail.com"
-                className="text-sm text-accent hover:underline flex items-center gap-2"
-              >
-                <Mail className="h-4 w-4" />
-                readlounge.club@gmail.com
-              </a>
-            </div>
-            {/* </CHANGE> */}
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="text-muted-foreground transition-colors hover:text-accent"
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
+    <footer className="bg-primary text-white border-t border-primary py-16 px-4 animate-fade-in-up">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-8 mb-12">
+          {/* Removed logo section from footer */}
+          <div className="space-y-3 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+            <h4 className="font-semibold text-white">Company</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="#contact" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Contact
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="mb-4 font-semibold">{category}</h3>
-              <ul className="space-y-2">
-                {links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-accent"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+          <div className="space-y-3 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            <h4 className="font-semibold text-white">Services</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="#services" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Google Ads
+                </Link>
+              </li>
+              <li>
+                <Link href="#services" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Social Media
+                </Link>
+              </li>
+              <li>
+                <Link href="#services" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Amazon Ads
+                </Link>
+              </li>
+              <li>
+                <Link href="#services" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Web Design
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-3 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+            <h4 className="font-semibold text-white">Learn</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Documentation
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Resources
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                  Support
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-3 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+            <h4 className="font-semibold text-white">Follow</h4>
+            <div className="flex gap-4">
+              <a
+                href="#"
+                className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+              >
+                <Linkedin size={20} />
+              </a>
+              <a
+                href="#"
+                className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+              >
+                <Instagram size={20} />
+              </a>
+              <a
+                href="#"
+                className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+              >
+                <Facebook size={20} />
+              </a>
+              <a
+                href="#"
+                className="text-white/80 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+              >
+                <Twitter size={20} />
+              </a>
             </div>
-          ))}
+          </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} ReadLoungeClub. All rights reserved.</p>
+        <div
+          className="border-t border-white/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/80 animate-fade-in-up"
+          style={{ animationDelay: "0.5s" }}
+        >
+          <p>© 2026 JOINTASK. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link href="#" className="hover:text-white transition-colors duration-300">
+              Privacy Policy
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors duration-300">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

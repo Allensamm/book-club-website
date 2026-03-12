@@ -1,84 +1,147 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
+import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
 
-export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About Us" },
-    { href: "/book-club", label: "Book Club" },
-    { href: "/books", label: "Our Picks" },
-    { href: "/events", label: "Events" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
-  ]
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, anchor: string) => {
+    e.preventDefault()
+    setIsOpen(false)
+
+    if (pathname === "/") {
+      // On homepage - scroll directly to section
+      const element = document.querySelector(anchor)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
+    } else {
+      // Not on homepage - navigate to home with anchor
+      router.push(`/?${anchor.slice(1)}`)
+      setTimeout(() => {
+        const element = document.querySelector(anchor)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }, 100)
+    }
+  }
+
+  const handleCTAClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setIsOpen(false)
+
+    if (pathname === "/") {
+      const contactSection = document.getElementById("contact")
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" })
+      }
+    } else {
+      router.push("/?contact")
+      setTimeout(() => {
+        const contactSection = document.getElementById("contact")
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: "smooth" })
+        }
+      }, 100)
+    }
+  }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/readloungeclub-logo.jpg"
-            alt="ReadLoungeClub"
-            width={120}
-            height={40}
-            className="h-10 w-auto"
-            priority
-          />
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border animate-fade-in-down">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between bg-gradient-to-r from-primary/5 to-accent/5 rounded-b-lg">
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <Image src="/jointask-logo.png" alt="JOINTASK Agency" width={50} height={50} className="h-12 w-auto" />
+          <span className="text-xl font-bold text-foreground hidden sm:inline">JOINTASK</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium transition-colors hover:text-accent">
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-3 md:flex">
-          <ThemeToggle />
-          <Button asChild className="bg-accent hover:bg-accent/90">
-            <Link href="/register">Join Now</Link>
+        {/* Desktop Menu */}
+        <div className="hidden md:flex gap-8 items-center">
+          <a
+            href="#services"
+            onClick={(e) => handleAnchorClick(e, "#services")}
+            className="text-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
+          >
+            Services
+          </a>
+          <a
+            href="#portfolio"
+            onClick={(e) => handleAnchorClick(e, "#portfolio")}
+            className="text-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
+          >
+            Portfolio
+          </a>
+          <Link href="/blog" className="text-foreground hover:text-primary transition-colors duration-300">
+            Blog
+          </Link>
+          <Link href="/guide-for-authors" className="text-foreground hover:text-primary transition-colors duration-300">
+            Guide for Authors
+          </Link>
+          <Link
+            href="/guide-for-non-authors"
+            className="text-foreground hover:text-primary transition-colors duration-300"
+          >
+            Guide for Non-Authors
+          </Link>
+          <Button
+            onClick={handleCTAClick}
+            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white transition-all hover:shadow-lg active:scale-95 whitespace-nowrap"
+          >
+            Talk to us
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        <button className="md:hidden transition-transform" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-      </div>
 
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <nav className="border-t border-border bg-background md:hidden">
-          <div className="container mx-auto flex flex-col gap-4 px-4 py-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium transition-colors hover:text-accent"
-                onClick={() => setIsMenuOpen(false)}
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="absolute top-full left-0 right-0 bg-background border-b border-border md:hidden animate-slide-in-down">
+            <div className="flex flex-col gap-4 p-4">
+              <a
+                href="#services"
+                onClick={(e) => handleAnchorClick(e, "#services")}
+                className="text-foreground hover:text-primary transition-colors cursor-pointer"
               >
-                {link.label}
+                Services
+              </a>
+              <a
+                href="#portfolio"
+                onClick={(e) => handleAnchorClick(e, "#portfolio")}
+                className="text-foreground hover:text-primary transition-colors cursor-pointer"
+              >
+                Portfolio
+              </a>
+              <Link href="/blog" className="text-foreground hover:text-primary transition-colors">
+                Blog
               </Link>
-            ))}
-            <div className="mt-2 flex items-center gap-3">
-              <ThemeToggle />
-              <Button asChild className="bg-accent hover:bg-accent/90">
-                <Link href="/register">Join Now</Link>
+              <Link href="/guide-for-authors" className="text-foreground hover:text-primary transition-colors pl-2">
+                Guide for Authors
+              </Link>
+              <Link href="/guide-for-non-authors" className="text-foreground hover:text-primary transition-colors pl-2">
+                Guide for Non-Authors
+              </Link>
+              <Button
+                onClick={handleCTAClick}
+                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white"
+              >
+                Talk to us
               </Button>
             </div>
           </div>
-        </nav>
-      )}
+        )}
+      </nav>
     </header>
   )
 }
