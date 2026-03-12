@@ -20,6 +20,8 @@ interface Message {
   created_at: string
 }
 
+export const dynamic = "force-dynamic"
+
 export default function AdminChatPage() {
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null)
@@ -27,7 +29,8 @@ export default function AdminChatPage() {
   const [inputValue, setInputValue] = useState("")
   const [loading, setLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const supabase = createClient()
+  const supabaseRef = useRef(typeof window !== "undefined" ? createClient() : null)
+  const supabase = supabaseRef.current!
 
   useEffect(() => {
     fetchConversations()

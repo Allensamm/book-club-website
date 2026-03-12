@@ -1,7 +1,24 @@
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
+const emptyResult = { data: [], error: null }
+
+function createMockClient() {
+  const chainable: any = new Proxy({}, {
+    get(_, prop) {
+      if (prop === 'data') return []
+      if (prop === 'error') return null
+      if (prop === 'then') return undefined
+      return () => chainable
+    },
+  })
+  return { from: () => chainable } as any
+}
+
 export async function createClient() {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return createMockClient()
+  }
   const cookieStore = await cookies()
 
   return createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
@@ -23,6 +40,9 @@ export async function createClient() {
 }
 
 export async function createStaticClient() {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return createMockClient()
+  }
   return createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
     cookies: {
       getAll() {
