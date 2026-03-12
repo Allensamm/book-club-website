@@ -6,6 +6,7 @@ import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { MembershipProvider } from "@/components/membership-provider"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -49,14 +50,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
-        <MembershipProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <Analytics />
-        </MembershipProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <MembershipProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <Analytics />
+          </MembershipProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

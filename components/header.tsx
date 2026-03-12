@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -42,7 +43,8 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
           <Button asChild className="bg-accent hover:bg-accent/90">
             <Link href="/register">Join Now</Link>
           </Button>
@@ -68,9 +70,12 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="mt-2 bg-accent hover:bg-accent/90">
-              <Link href="/register">Join Now</Link>
-            </Button>
+            <div className="mt-2 flex items-center gap-3">
+              <ThemeToggle />
+              <Button asChild className="bg-accent hover:bg-accent/90">
+                <Link href="/register">Join Now</Link>
+              </Button>
+            </div>
           </div>
         </nav>
       )}
