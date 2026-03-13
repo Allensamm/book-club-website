@@ -3,8 +3,6 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import StickyCTAButton from "@/components/sticky-cta-button"
-import Header from "@/components/header"
 import { ThemeProvider } from "@/components/theme-provider"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -75,7 +73,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://jointask.com",
   },
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -125,8 +123,6 @@ export default function RootLayout({
       </head>
       <body className={`font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <Header />
-          <StickyCTAButton />
           {children}
           <Analytics />
         </ThemeProvider>
