@@ -15,6 +15,7 @@ export default function SpotlightSignupPage() {
   const [password, setPassword] = useState("")
   const [displayName, setDisplayName] = useState("")
   const [error, setError] = useState("")
+  const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
   const router = useRouter()
@@ -43,7 +44,7 @@ export default function SpotlightSignupPage() {
     setLoading(true)
 
     const supabase = createClient()
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -59,8 +60,15 @@ export default function SpotlightSignupPage() {
       return
     }
 
-    router.push("/spotlight")
-    router.refresh()
+    // If session exists, user is logged in (email confirmation disabled)
+    if (data.session) {
+      router.push("/spotlight")
+      router.refresh()
+    } else {
+      // Email confirmation is required - show message
+      setMessage("Check your email for a confirmation link, then sign in.")
+      setLoading(false)
+    }
   }
 
   return (
@@ -121,6 +129,9 @@ export default function SpotlightSignupPage() {
 
               {error && (
                 <p className="text-sm text-destructive">{error}</p>
+              )}
+              {message && (
+                <p className="text-sm text-primary">{message}</p>
               )}
 
               <Button type="submit" className="w-full" disabled={loading}>
