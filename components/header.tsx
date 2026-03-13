@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { Menu, X, Sun, Moon } from "lucide-react"
+import { Menu, X, Sun, Moon, BookOpen } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
@@ -94,6 +94,13 @@ export default function Header() {
           >
             Guide for Non-Authors
           </Link>
+          <Link
+            href="/spotlight"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white text-sm font-medium hover:from-purple-600 hover:to-indigo-600 transition-all hover:shadow-lg hover:scale-105 active:scale-95"
+          >
+            <BookOpen className="h-4 w-4" />
+            Spotlight
+          </Link>
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="p-2 rounded-md text-foreground hover:bg-muted transition-colors"
@@ -141,6 +148,14 @@ export default function Header() {
               </Link>
               <Link href="/guide-for-non-authors" className="text-foreground hover:text-primary transition-colors pl-2">
                 Guide for Non-Authors
+              </Link>
+              <Link
+                href="/spotlight"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-medium hover:from-purple-600 hover:to-indigo-600 transition-all"
+              >
+                <BookOpen className="h-4 w-4" />
+                Spotlight - AI Book Discussions
               </Link>
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
