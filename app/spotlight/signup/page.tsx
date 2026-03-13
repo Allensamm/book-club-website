@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
@@ -18,8 +18,6 @@ export default function SpotlightSignupPage() {
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
-  const router = useRouter()
-
   const handleGoogleSignup = async () => {
     setError("")
     setGoogleLoading(true)
@@ -62,8 +60,7 @@ export default function SpotlightSignupPage() {
 
     // If session exists, user is logged in (email confirmation disabled)
     if (data.session) {
-      router.push("/spotlight")
-      router.refresh()
+      window.location.href = "/spotlight"
     } else {
       // Email confirmation is required - show message
       setMessage("Check your email for a confirmation link, then sign in.")

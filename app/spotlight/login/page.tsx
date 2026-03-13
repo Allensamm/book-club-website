@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
@@ -16,8 +16,6 @@ export default function SpotlightLoginPage() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
-  const router = useRouter()
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
@@ -35,8 +33,7 @@ export default function SpotlightLoginPage() {
       return
     }
 
-    router.push("/spotlight")
-    router.refresh()
+    window.location.href = "/spotlight"
   }
 
   const handleGoogleLogin = async () => {
