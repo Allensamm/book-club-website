@@ -7,7 +7,7 @@
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start"
-  },h
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
     "@emotion/is-prop-valid": "latest",
